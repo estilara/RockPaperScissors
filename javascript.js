@@ -1,57 +1,74 @@
+const btns = document.querySelectorAll("button");
+
+btns.forEach((button) => {
+    button.addEventListener('click', () => {
+        const optionName = button.querySelector("img");
+        playerSelection = optionName.alt.toLowerCase();
+        
+        function computerPlay() {
+            let options = ['rock', 'paper', 'scissors'];
+            const randomSelection = options[Math.floor(Math.random() * options.length)];
+            return randomSelection
+        }; 
+        
+        computerSelection = computerPlay();
+        playRound();
+    });
+});
+
+function addScore() {
+    const results = document.createElement("p");
+    const container = document.querySelector(".resultsContainer")
+    container.appendChild(results);
+    return results
+}
+
+const scoreDisplay = addScore();
+
 let playerScore = 0;
 let computerScore = 0;
 
+function displayResults(str) {
+    scoreDisplay.textContent = str;
+}
+
 function playRound() {
-    function computerPlay() {
-        let options = ['rock', 'paper', 'scissors'];
-        const randomSelection = options[Math.floor(Math.random() * options.length)];
-        return randomSelection
-    }; 
-    
-    function playerPlay() {
-        let playerChoice = prompt("Choose one: Rock, Paper, Scissors")
-        return playerChoice.toLowerCase()
-    };
-    
-    const computerSelection = computerPlay();
-    const playerSelection = playerPlay();
-    
 
     function youWon() {
         return `You win! ${playerSelection} beats ${computerSelection}`;
     };
-    
 
+    
+    
     if (playerSelection === 'rock' && computerSelection === 'scissors') {
         playerScore++
-        return youWon()
+        displayResults(youWon())
     } else if (playerSelection === 'scissors' && computerSelection === 'paper'){
         playerScore++
-        return youWon()
+        displayResults(youWon())
     } else if (playerSelection === 'paper' && computerSelection === 'rock') {
         playerScore++
-        return youWon()
+        displayResults(youWon())
     } else if (playerSelection === computerSelection) {
-        return `Tie! ${playerSelection} ties with ${computerSelection}`
+        displayResults(`Tie! ${playerSelection} ties with ${computerSelection}`)
     } else {
         computerScore++
-        return `You lost! ${computerSelection} beats ${playerSelection}`
+        displayResults(`You lost! ${computerSelection} beats ${playerSelection}`)
     };
 }
 
-function game() {
+
+
+/*function game() {
     for (let i = 0; i < 5 ; i++){
-        console.log(playRound())
+        playRound()
     }
 
     if (playerScore > computerScore) {
-        console.log(`You won! Your score is ${playerScore}`)
+        displayResults(`You won! Your score is ${playerScore}`)
     } else if (playerScore < computerScore) {
-        console.log(`You lost! Your score is ${playerScore}`)
+        displayResults(`You lost! Your score is ${playerScore}`)
     } else {
-        console.log(`Tie! Your score is ${playerScore}`)
+        displayResults(`Tie! Your score is ${playerScore}`)
     }
-}
-
-game();
-
+}*/
