@@ -16,6 +16,7 @@ btns.forEach((button) => {
     });
 });
 
+//need to make a function to keep creating <p> when button is clicked
 function addScore() {
     const results = document.createElement("p");
     const container = document.querySelector(".resultsContainer")
