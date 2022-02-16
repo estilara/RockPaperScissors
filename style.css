@@ -4,6 +4,22 @@
     align-items: center;
 }
 
-.options {
+.btn {
     height: fit-content;
+}
+
+img {
+    height:100px;
+}
+
+.infosContainer {
+    display: flex;
+    justify-content: space-around;
+    padding: 30px;
+}
+
+.scoreContainer {
+    display: flex; 
+    justify-content: space-evenly;
+    width: 300px;
 }
