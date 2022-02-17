@@ -1,6 +1,9 @@
 const btns = document.querySelectorAll("button");
 const score = document.querySelector(".numbers");
 
+let playerScore = 0;
+let computerScore = 0;
+
 function newComputerScore() {
     const computerScoreContainer = score.firstElementChild;
     if (computerScore++) {
@@ -16,7 +19,6 @@ function newPlayerScore() {
     
 } 
 
-
 btns.forEach((button) => {
     button.addEventListener('click', () => {
         const optionName = button.querySelector("img");
@@ -30,22 +32,28 @@ btns.forEach((button) => {
         
         computerSelection = computerPlay();
         playRound();
+        game();
     });
 });
 
 
+const container = document.querySelector(".resultsContainer")
+
 function addResult() {
     const results = document.createElement("p");
-    const container = document.querySelector(".resultsContainer")
     container.appendChild(results);
     return results
 }
 
-let playerScore = 0;
-let computerScore = 0;
 
 function displayResults(str) {
     addResult().textContent = str;
+}
+
+function displayBoldResults(str) {
+    addResult().textContent = str;
+    let lastChild = container.lastChild;
+    lastChild.style.fontWeight = '700';
 }
 
 function playRound() {
@@ -55,43 +63,36 @@ function playRound() {
     };
     
     if (playerSelection === 'rock' && computerSelection === 'scissors') {
-        playerScore++
-        newPlayerScore()
-        displayResults(youWon())
+        ++playerScore;
+        newPlayerScore();
+        displayResults(youWon());
     } else if (playerSelection === 'scissors' && computerSelection === 'paper'){
-        playerScore++
-        newPlayerScore()
-        displayResults(youWon())
+        ++playerScore;
+        newPlayerScore();
+        displayResults(youWon());
     } else if (playerSelection === 'paper' && computerSelection === 'rock') {
-        playerScore++
-        newPlayerScore()
-        displayResults(youWon())
+        ++playerScore;
+        newPlayerScore();
+        displayResults(youWon());
     } else if (playerSelection === computerSelection) {
         displayResults(`Tie! ${playerSelection} ties with ${computerSelection}`)
     } else {
-        computerScore++
-        newComputerScore()
+        ++computerScore
+        newComputerScore();
         displayResults(`You lost! ${computerSelection} beats ${playerSelection}`)
     };
 
-    if (playerScore++ || computerScore++) {
-
-    }
 }
 
 
-/*function game() {
-    for (let i = 0; i < 5 ; i++){
-        playRound();
-
+function game() {
+    if (playerScore == 6 || computerScore == 6) {
         if (playerScore > computerScore) {
-            displayResults(`You won! Your score is ${playerScore}`)
+            displayBoldResults(`You won the game! Your score is ${playerScore}`)
         } else if (playerScore < computerScore) {
-            displayResults(`You lost! Your score is ${playerScore}`)
+            displayBoldResults(`You lost the game! Your score is ${playerScore}`)
         } else {
-            displayResults(`Tie! Your score is ${playerScore}`)
+            displayBoldResults(`It's a Tie! Your score is ${playerScore}`)
         }
     }
-
-    
-}*/
+}

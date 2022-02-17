@@ -2,6 +2,8 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+    margin: 30px;
+    margin-top: 60px;
 }
 
 .btn {
@@ -22,4 +24,14 @@ img {
     display: flex; 
     justify-content: space-evenly;
     width: 300px;
+}
+
+h1 {
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.rules {
+    margin-top: 0;
+    text-align: center;
 }
